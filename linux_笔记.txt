@@ -549,3 +549,22 @@ do while 在循环结束时判断条件    循环必执行一次
 
 /**********20170716***************/
 笔记推送到github
+C:\Program Files (x86)\STMicroelectronics\BlueNRG DK 2.0.2
+
+
+
+/******************************20170827*******************/
+bootloader跳转注意点，
+关中断，deinit外设，（RCC时钟），* 用到systick，要关掉systick中断，一般的disableIRQ无法关闭系统终端systick，
+如果未关systick中断，而APP使用到systick，则会产生错误，无法运行。
+
+
+IDE烧写.bin.hex.elf 代码文件到 flash, 会根据 flash.ld 等flash分配文件进行烧写，
+a: ori=0 len= 0x400
+b: ori=0x400  len =0x400
+
+c: ori=0xa00  lem=0x400
+
+.bin大小0xe00,实际内容 大小0xc00
+
+0x800-0xa00直接为空，填充0XFF，
